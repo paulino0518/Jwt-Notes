@@ -54,3 +54,6 @@ jwt.sign({
 ```
 
 How to verify tokens:
+```
+//jwt.verify(token, secretKey, [options/callback])
+```
