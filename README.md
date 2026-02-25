@@ -28,3 +28,29 @@ How to create a token:
   - noTimestamp
 There are more options, reference the npm page.
 
+How to sign the token with the default algo?
+```
+const token = jwt.sign({ foo: 'bar' }, 'shhhh')
+```
+
+It does have a builtin exp to set when it expires, it's part of the payload:
+```
+jwt.sign({
+  exp: Math.floor(Date.now() / 1000) + (60 * 60),
+  payload: 'foobar'
+}, 'secret')
+```
+Other options to set an expiration date:
+```
+jwt.sign({
+  data: 'foobar'
+}, 'secret', { expiresIn: 60 * 60 });
+
+//or even better:
+
+jwt.sign({
+  data: 'foobar'
+}, 'secret', { expiresIn: '1h' });
+```
+
+How to verify tokens:
