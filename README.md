@@ -57,3 +57,9 @@ How to verify tokens:
 ```
 //jwt.verify(token, secretKey, [options/callback])
 ```
+
+When using a library like jsonwebtoken in Node.js, the jwt.verify() function's return value depends on how it is called: 
+Synchronous use (no callback provided): It returns the decoded payload of the JWT if the signature is valid and all other validations (like expiration, audience, issuer) pass. If verification fails for any reason (e.g., invalid signature, expired token), it will throw an error (e.g., JsonWebTokenError, TokenExpiredError).
+Asynchronous use (callback provided): It returns nothing (or undefined), and the result is handled via a callback function. The callback receives two arguments: (err, decoded).
+If verification is successful, err will be null and the decoded argument will contain the decoded payload.
+If verification fails, err will contain the specific error, and decoded will be undefined.
